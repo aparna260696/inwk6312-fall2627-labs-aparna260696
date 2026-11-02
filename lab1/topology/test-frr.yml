@@ -1,5 +1,0 @@
-name: test-frr
-provider: clab
-nodes:
-  f1:
-    device: frr
