@@ -1,0 +1,28 @@
+graph {
+  bgcolor="transparent"
+  nodesep="0.5"
+  ranksep="1"
+  node [bgcolor="#ff9f01" fillcolor="#ff9f01" margin="0.3,0.1" shape="box" style="rounded,filled" fontname="Verdana" fontsize="11"]
+  edge [fontname="Verdana" labelfontsize="8" labeldistance="1.5"]
+  "r11" [
+    label="r11 [eos]\n10.0.0.1/32"
+  ]
+  "r12" [
+    label="r12 [eos]\n10.0.0.2/32"
+  ]
+  "r21" [
+    label="r21 [eos]\n10.0.0.3/32"
+  ]
+  "r22" [
+    label="r22 [eos]\n10.0.0.4/32"
+  ]
+  "r23" [
+    label="r23 [eos]\n10.0.0.5/32"
+  ]
+ "r11" -- "r21"
+ "r11" -- "r22"
+ "r11" -- "r23"
+ "r12" -- "r21"
+ "r12" -- "r22"
+ "r12" -- "r23"
+}

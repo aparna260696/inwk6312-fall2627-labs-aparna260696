@@ -1,0 +1,6 @@
+name: test-eos
+provider: clab
+defaults:
+  device: eos
+nodes:
+  r1:

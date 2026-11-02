@@ -1,0 +1,53 @@
+name: dc-fabric
+provider: clab
+
+defaults:
+  device: eos
+  attributes:
+    link:
+      circuit_desc: str
+
+module: [ ospf ]
+
+addressing:
+  loopback:
+    ipv4: 10.0.0.0/24
+  link:
+    ipv4: 10.1.0.0/16
+
+nodes:
+  r11:
+    device: frr
+  r12:
+    device: frr
+  r21:
+  r22:
+  r23:
+
+groups:
+  spine:
+    members: [r11, r12]
+  leaf:
+    members: [r21, r22, r23]
+  all:
+    config: [link-description]
+
+links:
+  - interfaces: [r11, r21]
+    circuit_desc: "Primary Uplink: Spine 1 to Leaf 1"
+  - interfaces: [r11, r22]
+    circuit_desc: "Primary Uplink: Spine 1 to Leaf 2"
+  - interfaces: [r11, r23]
+    circuit_desc: "Primary Uplink: Spine 1 to Leaf 3"
+  - interfaces: [r12, r21]
+    circuit_desc: "Secondary Uplink: Spine 2 to Leaf 1"
+  - interfaces: [r12, r22]
+    circuit_desc: "Secondary Uplink: Spine 2 to Leaf 2"
+  - interfaces: [r12, r23]
+    circuit_desc: "Secondary Uplink: Spine 2 to Leaf 3"
+validate:
+  ospf_check:
+    description: Check OSPF neighbor adjacencies on spine r11
+    nodes: [r11]
+    plugin: ospf_neighbor(nodes.r21.ospf.router_id)
+

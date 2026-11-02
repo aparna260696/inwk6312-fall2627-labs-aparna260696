@@ -1,0 +1,6 @@
+{% for intf in interfaces | default([]) %}
+{% if intf.circuit_desc is defined %}
+interface {{ intf.ifname }}
+   description {{ intf.circuit_desc }}
+{% endif %}
+{% endfor %}

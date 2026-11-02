@@ -1,0 +1,14 @@
+# Containerlab generated files
+lab1/topology/clab-*/
+
+# Generated Ansible files
+lab1/topology/host_vars/
+lab1/topology/group_vars/
+lab1/topology/hosts.yml
+lab1/topology/ansible.cfg
+
+# Generated netlab files
+lab1/topology/clab.yml
+lab1/topology/netlab.snapshot.pickle
+lab1/topology/netlab.lock
+lab1/topology/node_files/
