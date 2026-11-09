@@ -1,0 +1,15 @@
+---
+- name: Backup Configurations from cEOS
+  hosts: eos
+  gather_facts: false
+
+  vars:
+    snapshot_dir: "../snapshots/baseline/configs"
+
+  tasks:
+    - name: Backup cEOS Running Configuration
+      arista.eos.eos_config:
+        backup: yes
+        backup_options:
+          dir_path: "{{ snapshot_dir }}"
+          filename: "{{ inventory_hostname }}.cfg"

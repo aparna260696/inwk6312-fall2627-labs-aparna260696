@@ -1,0 +1,36 @@
+
+name: dc-fabric-2
+provider: clab
+defaults.bgp.warnings.missing_igp: False
+defaults.device: eos
+plugin: [ fabric ]
+module: [ bgp ]
+
+fabric:
+  spines: 2
+  leafs: 3
+
+fabric.spine.name: r1{count}
+fabric.leaf.name: r2{count}
+
+groups:
+  leaf_nodes:
+    members: [ r21, r22, r23 ]
+    config: [ bgp-multipath ]
+
+nodes:
+  r11:
+    bgp.as: 65000
+    bgp.sessions:
+      ipv4: [ebgp]
+  r12:
+    bgp.as: 65000
+    bgp.sessions:
+      ipv4: [ebgp]
+  r21:
+    bgp.as: 65001
+  r22:
+    bgp.as: 65002
+  r23:
+    bgp.as: 65003
+
